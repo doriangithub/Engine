@@ -1,4 +1,8 @@
-int main()
+#include <QtWidgets\qapplication.h>
+
+int main(int argc, char* argv[])
 {
-	return 1;
+	QApplication app(argc,argv);
+
+	return app.exec();
 }
