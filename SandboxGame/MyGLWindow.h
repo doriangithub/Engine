@@ -4,6 +4,8 @@
 
 class MyGLWindow : public QGLWidget
 {
+protected:
+	void initializeGL();
 
 };
 
