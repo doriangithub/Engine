@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="SandboxGame.cpp" />
     <ClCompile Include="MyGLWindow.cpp" />
+    <ClCompile Include="MyGLWindow_moc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGLWindow.h" />

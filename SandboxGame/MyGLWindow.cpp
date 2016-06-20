@@ -1,6 +1,8 @@
 #include <GL\glew.h>
 #include "MyGLWindow.h"
 #include <cassert>
+#include <iostream>
+
 
 void MyGLWindow::initializeGL()
 {
@@ -18,6 +20,10 @@ void MyGLWindow::initializeGL()
 	};
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+	connect(&myTimer, SIGNAL(timeout()), this, SLOT(myUpdate()));
+	myTimer.start(0);
+
 }
 
 void MyGLWindow::paintGL()
@@ -26,4 +32,9 @@ void MyGLWindow::paintGL()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+void MyGLWindow::myUpdate()
+{
+	std::cout << "Frame" << std::endl;
 }
