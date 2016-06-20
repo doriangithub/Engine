@@ -1,7 +1,7 @@
 #include <GL\glew.h>
 #include "MyGLWindow.h"
 #include <cassert>
-#include <iostream>
+//#include <iostream>
 
 
 void MyGLWindow::initializeGL()
@@ -36,5 +36,5 @@ void MyGLWindow::paintGL()
 
 void MyGLWindow::myUpdate()
 {
-	std::cout << "Frame" << std::endl;
+	//std::cout << "Frame" << std::endl;
 }
