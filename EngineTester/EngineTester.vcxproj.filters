@@ -3,6 +3,6 @@
   <ItemGroup>
     <ClCompile Include="MyMain.cpp" />
     <ClCompile Include="..\MIddleware\gtest\src\gtest-all.cc" />
-    <ClCompile Include="MyTestTempFile.cpp" />
+    <ClCompile Include="Vector2DTests.cpp" />
   </ItemGroup>
 </Project>

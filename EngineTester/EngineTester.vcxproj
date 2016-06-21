@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\DEVELOPMENT\CPP\Engine\MIddleware\gtest</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Engine;$(ProjectDir)..\MIddleware\gtest</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +145,7 @@
   <ItemGroup>
     <ClCompile Include="..\MIddleware\gtest\src\gtest-all.cc" />
     <ClCompile Include="MyMain.cpp" />
-    <ClCompile Include="MyTestTempFile.cpp" />
+    <ClCompile Include="Vector2DTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
