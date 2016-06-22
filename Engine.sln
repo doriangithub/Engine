@@ -11,6 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandboxGame", "SandboxGame\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineTester", "EngineTester\EngineTester.vcxproj", "{2C9DCEA6-B433-4E95-8832-82A98953A7BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0190B2B9-A44E-4AA6-9A98-FE4D7A391576} = {0190B2B9-A44E-4AA6-9A98-FE4D7A391576}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

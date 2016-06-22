@@ -20,9 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Vector2D.h" />
+    <ClInclude Include="Timing\Clock.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\Vector2D.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Timing\Clock.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0190B2B9-A44E-4AA6-9A98-FE4D7A391576}</ProjectGuid>
@@ -79,6 +83,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(Configuration)\Temp\</IntDir>
     <TargetExt>.dll</TargetExt>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
