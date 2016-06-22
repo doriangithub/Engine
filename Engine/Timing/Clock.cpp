@@ -6,7 +6,7 @@ namespace Timing
 		bool b = QueryPerformanceFrequency(&timeFrequency);
 		if(!b)
 			return false;
-		return QueryPerformanceFrequency(&timeLastFrame);
+		return QueryPerformanceCounter(&timeLastFrame);
 	}
 
 	bool Clock::shutdown()

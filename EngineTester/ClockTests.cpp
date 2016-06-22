@@ -19,6 +19,7 @@ TEST(Clock, FrameTimeMeasuring)
 {
 	Clock clock;
 	EXPECT_TRUE(clock.initialize());
+	clock.newFrame();
 	QTest::qSleep(1000);
 	clock.newFrame();
 	float timedTime = clock.timeElapsedLastFrame();
@@ -33,7 +34,7 @@ TEST(Clock, FrameTimeMeasuring)
 	EXPECT_TRUE(timedTime < 0.6f);
 
 	const int NUM_TESTS = 10 + rand() % 100;
-	const float THRESHHOLD = 0.1f;
+	const float THRESHHOLD = 0.01f;
 	for (int i = 0; i < NUM_TESTS; i++)
 	{
 		cout << ".";
