@@ -2,7 +2,9 @@
 #include "MyGLWindow.h"
 #include <cassert>
 #include <Math\Vector2D.h>
+#include <Timing\Clock.h>
 using Math::Vector2D;
+using Timing::Clock;
 
 namespace
 {
@@ -15,7 +17,8 @@ namespace
 
 	const unsigned int NUM_VERTS = sizeof(verts) / sizeof(*verts);
 
-	Vector2D shipPosition(0.0f, 0.0f);
+	Vector2D shipPosition(-1.0f, -1.0f);
+	Clock clock;
 }
 
 void MyGLWindow::initializeGL()
@@ -51,7 +54,18 @@ void MyGLWindow::paintGL()
 
 void MyGLWindow::myUpdate()
 {
-	Vector2D velocity(0.0001f, 0.0001f);
-	shipPosition = shipPosition + velocity;
+	clock.newFrame();
+	Vector2D velocity(0.5f, 0.5f);
+	shipPosition = shipPosition + velocity * clock.timeElapsedLastFrame();
 	repaint();
+}
+
+bool MyGLWindow::initialize()
+{
+	return clock.initialize();
+}
+
+bool MyGLWindow::shutdown()
+{
+	return clock.shutdown();
 }

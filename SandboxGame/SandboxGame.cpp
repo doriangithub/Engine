@@ -23,7 +23,14 @@ int main(int argc, char* argv[])
 
 	QApplication app(argc,argv);
 	MyGLWindow myGlWindow;
+	if (!myGlWindow.initialize())
+		return -1;
 	myGlWindow.show();
 
-	return app.exec();
+	int errorCode = app.exec();
+	if (!myGlWindow.shutdown())
+	{
+		errorCode |= 1;
+	}
+	return errorCode;
 }
