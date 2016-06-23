@@ -1,6 +1,7 @@
 #include <GL\glew.h>
 #include "MyGLWindow.h"
 #include <cassert>
+#include <QtGui\qevent.h>
 #include <Math\Vector2D.h>
 #include <Timing\Clock.h>
 using Math::Vector2D;
@@ -17,7 +18,7 @@ namespace
 
 	const unsigned int NUM_VERTS = sizeof(verts) / sizeof(*verts);
 
-	Vector2D shipPosition(-1.0f, -1.0f);
+	Vector2D shipPosition;
 	Clock clock;
 }
 
@@ -55,7 +56,7 @@ void MyGLWindow::paintGL()
 void MyGLWindow::myUpdate()
 {
 	clock.newFrame();
-	Vector2D velocity(0.5f, 0.5f);
+	Vector2D velocity;
 	shipPosition = shipPosition + velocity * clock.timeElapsedLastFrame();
 	repaint();
 }
@@ -68,4 +69,16 @@ bool MyGLWindow::initialize()
 bool MyGLWindow::shutdown()
 {
 	return clock.shutdown();
+}
+
+void MyGLWindow::keyPressEvent(QKeyEvent* e)
+{
+	if (e->key() == Qt::Key_Up)
+		shipPosition.y += 0.05;
+	if (e->key() == Qt::Key_Down)
+		shipPosition.y -= 0.05;
+	if (e->key() == Qt::Key_Left)
+		shipPosition.x -= 0.05;
+	if (e->key() == Qt::Key_Right)
+		shipPosition.x += 0.05;
 }

@@ -12,6 +12,7 @@ class MyGLWindow : public QGLWidget
 protected:
 	void initializeGL();
 	void paintGL();
+	void keyPressEvent(QKeyEvent*);
 private slots:
 	void myUpdate();
 public:
