@@ -21,7 +21,9 @@ Vector2D::Vector2D(const Vector2D& source)
 
 Vector2D Vector2D::operator =(const Vector2D& right)
 {
-	return Vector2D();
+	x = right.x;
+	y = right.y;
+	return *this;
 }
 
 Vector2D Vector2D::operator +=(const Vector2D& right)

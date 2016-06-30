@@ -43,5 +43,13 @@ TEST(Vector2D, CopyConstructor)
 
 TEST(Vector2D, AssigmentOperators)
 {
-
+	Vector2D source(5, -1234.5678);
+	Vector2D another(1, 1);
+	EXPECT_FLOAT_EQ(another.x, 1);
+	EXPECT_FLOAT_EQ(another.y, 1);
+	another = source;
+	EXPECT_FLOAT_EQ(another.x, source.x);
+	EXPECT_FLOAT_EQ(another.y, source.y);
+	EXPECT_FLOAT_EQ(another.x, 5);
+	EXPECT_FLOAT_EQ(another.y, -1234.5678);
 }
