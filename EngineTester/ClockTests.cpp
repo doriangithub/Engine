@@ -18,6 +18,7 @@ TEST(Clock, Initialize)
 TEST(Clock, FrameTimeMeasuring)
 {
 	Clock clock;
+#ifdef OVERNIGHT_TESTS
 	EXPECT_TRUE(clock.initialize());
 	clock.newFrame();
 	QTest::qSleep(1000);
@@ -48,6 +49,7 @@ TEST(Clock, FrameTimeMeasuring)
 		EXPECT_TRUE( (thisTestTimeSeconds - THRESHHOLD) < elapsedSeconds );
 		EXPECT_TRUE( elapsedSeconds < (thisTestTimeSeconds + THRESHHOLD) );
 	}
+#endif // OVERNIGHT_TESTS
 
 	clock.newFrame();
 	clock.timeElapsedLastFrame();

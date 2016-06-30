@@ -19,6 +19,7 @@ namespace
 	const unsigned int NUM_VERTS = sizeof(verts) / sizeof(*verts);
 
 	Vector2D shipPosition;
+	Vector2D shipVelocity;
 	Clock clock;
 }
 
@@ -39,6 +40,7 @@ void MyGLWindow::initializeGL()
 
 void MyGLWindow::paintGL()
 {
+	glViewport(0, 0, width(), height());
 	glClear(GL_COLOR_BUFFER_BIT);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
@@ -56,8 +58,10 @@ void MyGLWindow::paintGL()
 void MyGLWindow::myUpdate()
 {
 	clock.newFrame();
-	Vector2D velocity;
-	shipPosition = shipPosition + velocity * clock.timeElapsedLastFrame();
+	//Vector2D velocity;
+	//shipPosition = shipPosition + velocity * clock.timeElapsedLastFrame();
+	updateVelocity();
+	shipPosition += shipVelocity * clock.timeElapsedLastFrame();
 	repaint();
 }
 
@@ -71,14 +75,15 @@ bool MyGLWindow::shutdown()
 	return clock.shutdown();
 }
 
-void MyGLWindow::keyPressEvent(QKeyEvent* e)
+void MyGLWindow::updateVelocity()
 {
-	if (e->key() == Qt::Key_Up)
-		shipPosition.y += 0.05;
-	if (e->key() == Qt::Key_Down)
-		shipPosition.y -= 0.05;
-	if (e->key() == Qt::Key_Left)
-		shipPosition.x -= 0.05;
-	if (e->key() == Qt::Key_Right)
-		shipPosition.x += 0.05;
+	const float ACCELERATION = 0.3f * clock.timeElapsedLastFrame();
+	if (GetAsyncKeyState(VK_UP))
+		shipVelocity.y += ACCELERATION;
+	if (GetAsyncKeyState(VK_DOWN))
+		shipVelocity.y -= ACCELERATION;
+	if (GetAsyncKeyState(VK_LEFT))
+		shipVelocity.x -= ACCELERATION;
+	if (GetAsyncKeyState(VK_RIGHT))
+		shipVelocity.x += ACCELERATION;
 }

@@ -12,9 +12,9 @@ class MyGLWindow : public QGLWidget
 protected:
 	void initializeGL();
 	void paintGL();
-	void keyPressEvent(QKeyEvent*);
 private slots:
 	void myUpdate();
+	void updateVelocity();
 public:
 	bool initialize();
 	bool shutdown();
