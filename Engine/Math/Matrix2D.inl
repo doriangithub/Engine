@@ -7,9 +7,11 @@ Matrix2D::Matrix2D(float r0c0, float r0c1,
 
 Matrix2D Matrix2D::rotate(float angleInRadians)
 {
+	float cosRezult = cos(angleInRadians);
+	float sinRezult = sin(angleInRadians);
 	return Matrix2D(
-		     cos(angleInRadians), -sin(angleInRadians),
-		     sin(angleInRadians),  cos(angleInRadians) );
+			cosRezult, -sinRezult,
+		    sinRezult, cosRezult);
 }
 
 Vector2D operator*(const Matrix2D& matrix, const Vector2D& vector)
