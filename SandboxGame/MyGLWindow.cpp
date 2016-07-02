@@ -4,14 +4,18 @@
 #include <QtGui\qevent.h>
 #include <Math\Vector2D.h>
 #include <Timing\Clock.h>
+#include <Math\Matrix2D.h>
+#include <algorithm> 
 using Math::Vector2D;
+using Math::Matrix2D;
 using Timing::Clock;
+using std::min;
 
 namespace
 {
 	Vector2D verts[] =
 	{
-		Vector2D(+0.0f, +0.1f),
+		Vector2D(+0.0f, +0.1414213562373095f),
 		Vector2D(-0.1f, -0.1f),
 		Vector2D(+0.1f, -0.1f),
 	};
@@ -20,6 +24,7 @@ namespace
 
 	Vector2D shipPosition;
 	Vector2D shipVelocity;
+	float shipOrientation = 0.0f;
 	Clock clock;
 }
 
@@ -40,15 +45,20 @@ void MyGLWindow::initializeGL()
 
 void MyGLWindow::paintGL()
 {
-	glViewport(0, 0, width(), height());
+	int minSize = min( width(), height() );
+	Vector2D viewportLocation;
+	viewportLocation.x = width() / 2 - minSize / 2;
+	viewportLocation.y = height() / 2 - minSize / 2;
+	glViewport(viewportLocation.x, viewportLocation.y, minSize, minSize);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
 	Vector2D translatedVerts[NUM_VERTS];
+	Matrix2D op = Matrix2D::rotate(shipOrientation);
 	for (unsigned int i = 0; i < NUM_VERTS; i++)
 	{
-		translatedVerts[i] = verts[i] + shipPosition;
+		translatedVerts[i] = op * verts[i]; // +shipPosition;
 	}
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(translatedVerts), translatedVerts);
 
@@ -58,8 +68,7 @@ void MyGLWindow::paintGL()
 void MyGLWindow::myUpdate()
 {
 	clock.newFrame();
-	//Vector2D velocity;
-	//shipPosition = shipPosition + velocity * clock.timeElapsedLastFrame();
+	rotateShip();
 	updateVelocity();
 	shipPosition += shipVelocity * clock.timeElapsedLastFrame();
 	repaint();
@@ -75,15 +84,21 @@ bool MyGLWindow::shutdown()
 	return clock.shutdown();
 }
 
+void MyGLWindow::rotateShip() 
+{
+	const float ANGULAR_MOVEMENT = 0.01f;
+
+	if (GetAsyncKeyState(VK_LEFT))
+		shipOrientation += ANGULAR_MOVEMENT;
+	if (GetAsyncKeyState(VK_RIGHT))
+		shipOrientation -= ANGULAR_MOVEMENT;
+}
+
 void MyGLWindow::updateVelocity()
 {
-	const float ACCELERATION = 0.3f * clock.timeElapsedLastFrame();
-	if (GetAsyncKeyState(VK_UP))
-		shipVelocity.y += ACCELERATION;
-	if (GetAsyncKeyState(VK_DOWN))
-		shipVelocity.y -= ACCELERATION;
-	if (GetAsyncKeyState(VK_LEFT))
-		shipVelocity.x -= ACCELERATION;
-	if (GetAsyncKeyState(VK_RIGHT))
-		shipVelocity.x += ACCELERATION;
+	//const float ACCELERATION = 0.3f * clock.timeElapsedLastFrame();
+	//if (GetAsyncKeyState(VK_UP))
+	//	shipVelocity.y += ACCELERATION;
+	//if (GetAsyncKeyState(VK_DOWN))
+	//	shipVelocity.y -= ACCELERATION;
 }

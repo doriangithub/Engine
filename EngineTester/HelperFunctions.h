@@ -1,6 +1,6 @@
 #ifndef TESTER_HELPER_FUNCTIONS_H
 #define TESTER_HELPER_FUNCTIONS_H
-#include <cmath>
+//#include <cmath>
 
 inline bool closeEnough(float left, float right, float treshold = 0.0000001) 
 {
