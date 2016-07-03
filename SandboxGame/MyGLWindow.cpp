@@ -58,7 +58,7 @@ void MyGLWindow::paintGL()
 	Matrix2D op = Matrix2D::rotate(shipOrientation);
 	for (unsigned int i = 0; i < NUM_VERTS; i++)
 	{
-		translatedVerts[i] = op * verts[i]; // +shipPosition;
+		translatedVerts[i] = shipPosition + ( op * verts[i] ); // +shipPosition;
 	}
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(translatedVerts), translatedVerts);
 
@@ -86,7 +86,7 @@ bool MyGLWindow::shutdown()
 
 void MyGLWindow::rotateShip() 
 {
-	const float ANGULAR_MOVEMENT = 0.01f;
+	const float ANGULAR_MOVEMENT = 0.001f;
 
 	if (GetAsyncKeyState(VK_LEFT))
 		shipOrientation += ANGULAR_MOVEMENT;
@@ -96,9 +96,12 @@ void MyGLWindow::rotateShip()
 
 void MyGLWindow::updateVelocity()
 {
-	//const float ACCELERATION = 0.3f * clock.timeElapsedLastFrame();
-	//if (GetAsyncKeyState(VK_UP))
-	//	shipVelocity.y += ACCELERATION;
-	//if (GetAsyncKeyState(VK_DOWN))
-	//	shipVelocity.y -= ACCELERATION;
+	const float ACCELERATION = 0.3f * clock.timeElapsedLastFrame();
+
+	Vector2D directionToAccelerate(-sin(shipOrientation), cos(shipOrientation));
+
+	if (GetAsyncKeyState(VK_UP))
+		shipVelocity += directionToAccelerate * ACCELERATION;
+	if (GetAsyncKeyState(VK_DOWN))
+		shipVelocity -= directionToAccelerate * ACCELERATION;
 }
