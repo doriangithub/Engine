@@ -39,3 +39,23 @@ TEST(Vector3D, ScalarMultiplication)
 	EXPECT_FLOAT_EQ(multiplied1.y, multiplied2.y);
 	EXPECT_FLOAT_EQ(multiplied1.z, multiplied2.z);
 }
+
+TEST(Vector3D, AssigmentPlusEquals)
+{
+	Vector3D source(5.0f, -1234.5678f, 763.123f);
+	Vector3D another(1.0f, 1.0f, 125.543f);
+	another += source;
+	EXPECT_FLOAT_EQ(another.x, 6);
+	EXPECT_FLOAT_EQ(another.y, -1233.5678f);
+	EXPECT_FLOAT_EQ(another.z, 888.666f);
+}
+
+TEST(Vector3D, AssigmentMinusEquals)
+{
+	Vector3D source(5.0f, -1234.0f, 763.123f);
+	Vector3D another(1.0f, 1.0f, 125.543f);
+	another -= source;
+	EXPECT_FLOAT_EQ(another.x, -4);
+	EXPECT_FLOAT_EQ(another.y, 1235.0f);
+	EXPECT_FLOAT_EQ(another.z, -637.58f);
+}
