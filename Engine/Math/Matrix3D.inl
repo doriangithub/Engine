@@ -8,10 +8,12 @@ Matrix3D::Matrix3D(
 
 Matrix3D Matrix3D::rotateZ(float angleInRadians)
 {
+	float cosRezult = cos(angleInRadians);
+	float sinRezult = sin(angleInRadians);
 	return Matrix3D(
-		cos(angleInRadians), -sin(angleInRadians), 0,
-		sin(angleInRadians),  cos(angleInRadians), 0,
-						  0,  				    0, 1);
+		cosRezult, -sinRezult, 0,
+		sinRezult,  cosRezult, 0,
+				0,  	    0, 1);
 }
 
 
