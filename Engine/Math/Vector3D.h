@@ -15,7 +15,7 @@ namespace Math
 	inline Vector3D operator*(float scalar, const Vector3D& vector);
 	inline Vector3D operator*(const Vector3D& vector, float scalar);
 
-	#include "Vector3D.inl"
+#include "Vector3D.inl"
 }
 
 
