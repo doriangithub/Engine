@@ -15,6 +15,16 @@ TEST(Vector3D, Constructor)
 	EXPECT_FLOAT_EQ(defaultConstructor.z, 0.0f);
 }
 
+TEST(Vector3D, VectorAddition)
+{
+	Vector3D first(9, -2, 5);
+	Vector3D second(-4, 5.4f, 7);
+	Vector3D rezult = first + second;
+	EXPECT_FLOAT_EQ(rezult.x, 5);
+	EXPECT_FLOAT_EQ(rezult.y, 3.4f);
+	EXPECT_FLOAT_EQ(rezult.z, 12);
+}
+
 TEST(Vector3D, ScalarMultiplication)
 {
 	Vector3D instance( 1.0f, 2.0f, 3.0f );

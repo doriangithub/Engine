@@ -56,10 +56,10 @@ void MyGLWindow::paintGL()
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
 	Vector3D translatedVerts[NUM_VERTS];
-	Matrix3D op = Matrix3D::rotate(shipOrientation);
+	Matrix3D op = Matrix3D::rotateZ(shipOrientation);
 	for (unsigned int i = 0; i < NUM_VERTS; i++)
 	{
-		translatedVerts[i] = shipPosition + ( op * verts[i] ); // +shipPosition;
+		translatedVerts[i] =  op * verts[i]; // +shipPosition;
 	}
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(translatedVerts), translatedVerts);
 
