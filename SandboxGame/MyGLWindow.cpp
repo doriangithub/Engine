@@ -16,9 +16,9 @@ namespace
 {
 	Vector3D verts[] =
 	{
-		Vector3D(+0.0f, +0.1414213562373095f),
-		Vector3D(-0.1f, -0.1f),
-		Vector3D(+0.1f, -0.1f),
+		Vector3D(+0.0f, +0.1414213562373095f, 1),
+		Vector3D(-0.1f, -0.1f, 1),
+		Vector3D(+0.1f, -0.1f, 1),
 	};
 
 	const unsigned int NUM_VERTS = sizeof(verts) / sizeof(*verts);
