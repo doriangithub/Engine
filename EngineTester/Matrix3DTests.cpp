@@ -142,3 +142,22 @@ TEST(Matrix3D, Translation)
 	EXPECT_FLOAT_EQ(victimPrime.y, 16);
 	EXPECT_FLOAT_EQ(victimPrime.z, 1);
 }
+
+TEST(Matrix3D, MatrixMatrixMultiply)
+{
+	Matrix3D theMatrix( 1, 2, 3,
+						4, 5, 6,
+						7, 8, 9 );
+	Matrix3D rezult = theMatrix * theMatrix;
+	EXPECT_FLOAT_EQ(rezult.r0c0, 30);
+	EXPECT_FLOAT_EQ(rezult.r0c1, 36);
+	EXPECT_FLOAT_EQ(rezult.r0c2, 42);
+
+	EXPECT_FLOAT_EQ(rezult.r1c0, 66);
+	EXPECT_FLOAT_EQ(rezult.r1c1, 81);
+	EXPECT_FLOAT_EQ(rezult.r1c2, 96);
+
+	EXPECT_FLOAT_EQ(rezult.r2c0, 102);
+	EXPECT_FLOAT_EQ(rezult.r2c1, 126);
+	EXPECT_FLOAT_EQ(rezult.r2c2, 150);
+}

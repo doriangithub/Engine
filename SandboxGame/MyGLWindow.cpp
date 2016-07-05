@@ -57,7 +57,7 @@ void MyGLWindow::paintGL()
 
 	Vector3D translatedVerts[NUM_VERTS];
 	Matrix3D op = 
-		Matrix3D::translate(shipPosition) * 
+		Matrix3D::translate(shipPosition.x, shipPosition.y) * 
 		Matrix3D::rotateZ(shipOrientation);
 	for (unsigned int i = 0; i < NUM_VERTS; i++)
 	{
